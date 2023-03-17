@@ -1,6 +1,6 @@
 export default function Input(props) {
   // Destructure props
-  const { inputText, setInputText, autoFocus, handleText } = props;
+  const { inputText, setInputText, autoFocus, handleText, id } = props;
 
   // Function to handle changes in the input field
   function handleChange(event) {
@@ -23,7 +23,7 @@ export default function Input(props) {
   // Render the component with a form and input field
   return (
     <div>
-      <form action="submit" onSubmit={handleSubmit}>
+      <form action="submit" onSubmit={handleSubmit} id={props.id}>
         <input
           type="text"
           value={inputText}

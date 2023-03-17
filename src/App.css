@@ -31,14 +31,9 @@ body {
 }*/
 .spacer {
   height: 1px;
-  background-color: rgb(62, 60, 60);
+  background-color: #c5c5c5;
   flex: 1;
-  opacity: 20%;
   margin: 30px 10px 10px 10px;
-}
-.task-input-header {
-  /* display: flex;
-  justify-content: space-around; */
 }
 .task-input {
   height: 52px;
@@ -111,16 +106,22 @@ input[type="text"]::placeholder {
 .tasks-list {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-evenly;
+  background-color: #4ab1ff;
   width: 100%;
-  color: white;
-  background-color: #999;
   margin: 10px auto;
-  padding: 10px;
+  padding: 10px 30px;
+  color: white;
   box-sizing: border-box;
   text-align: left;
   border-radius: 5px;
   cursor: pointer;
+}
+.tasks-container {
+  margin: 10px;
+}
+.tasks-container:not(:last-child) {
+  border-bottom: 1px solid #c5c5c5;
 }
 .close-tasklist-btn {
   cursor: pointer;
@@ -139,7 +140,7 @@ input[type="text"]::placeholder {
   width: 90%;
   margin: auto;
   padding: 20px 5px;
-  border-bottom: 1px solid #c1c1c1;
+  /* border-bottom: 1px solid #c1c1c1; */
   display: flex;
   box-sizing: border-box;
   align-items: center;
@@ -150,7 +151,7 @@ input[type="text"]::placeholder {
   width: 90%;
   margin: auto;
   padding: 20px 5px;
-  border-bottom: 1px solid #c1c1c1;
+  /* border-bottom: 1px solid #c1c1c1; */
   display: flex;
   box-sizing: border-box;
   align-items: center;
@@ -176,6 +177,9 @@ input[type="checkbox"]:checked {
 }
 .svg-icon {
   fill: grey;
+}
+.tasks-list .svg-icon {
+  fill: #2d5cfe;
 }
 .svg-icon:hover {
   fill: #ff3f5b;

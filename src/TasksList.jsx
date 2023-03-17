@@ -84,7 +84,7 @@ export default function TasksList(props) {
               key={task.id}
               task={task}
               setTasks={setTasks}
-              tasks={tasksList}
+              tasksArray={tasksList}
             />
           ))}
         </div>

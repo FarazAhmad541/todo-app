@@ -1,10 +1,10 @@
 import React from "react";
 
 export default function Task(props) {
-  const { task, setTasks, tasks } = props;
+  const { task, setTasks, tasksArray } = props;
 
   function handleCheckbox(id) {
-    const updatedTasks = tasks.map((item) => {
+    const updatedTasks = tasksArray.map((item) => {
       return {
         ...item,
         tasks: item.tasks.map((task) => {
@@ -23,7 +23,7 @@ export default function Task(props) {
   }
 
   function removeTask(id) {
-    const updatedTasks = tasks.map((item) => {
+    const updatedTasks = tasksArray.map((item) => {
       return {
         ...item,
         tasks: item.tasks.filter((task) => task.id !== id),
@@ -37,7 +37,7 @@ export default function Task(props) {
       <input
         type="checkbox"
         className="checkbox"
-        onChange={() => handleCheckbox(task.id)}
+        onChange={() => handleChetasksckbox(task.id)}
         checked={task.isChecked}
       />
       <div className={task.isChecked ? "marked-through" : undefined}>
@@ -70,5 +70,5 @@ export default function Task(props) {
       </div>
     </div>
   );
-  return <div>{taskElements}</div>;
+  return <div className="tasks-container">{taskElements}</div>;
 }
