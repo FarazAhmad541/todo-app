@@ -37,7 +37,7 @@ export default function Task(props) {
       <input
         type="checkbox"
         className="checkbox"
-        onChange={() => handleChetasksckbox(task.id)}
+        onChange={() => handleCheckbox(task.id)}
         checked={task.isChecked}
       />
       <div className={task.isChecked ? "marked-through" : undefined}>
