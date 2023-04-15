@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "./firebaseConfig";
+import { auth } from "../firebaseConfig";
 export default function LoginComponent(props) {
   const [isSignUpMode, setIsSignUpMode] = useState(true);
   const [formData, setFormData] = useState({

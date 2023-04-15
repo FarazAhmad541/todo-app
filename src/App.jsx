@@ -1,10 +1,10 @@
 import { nanoid } from "nanoid";
 import { useState, useEffect } from "react";
 import "./App.css";
-import CreateListModal from "./CreateListModal";
-import TasksList from "./TasksList";
-import TasksCategoryList from "./TasksCategoryList";
-import LoginComponent from "./LoginComponent";
+import CreateListModal from "./components/CreateListModal";
+import TasksList from "./components/TasksList";
+import TasksCategoryList from "./components/TasksCategoryList";
+import LoginComponent from "./components/LoginComponent";
 
 function App() {
   const [isUserSignedIn, setIsUserSignedIn] = useState(false);
