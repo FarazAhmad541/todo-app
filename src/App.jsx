@@ -4,8 +4,11 @@ import "./App.css";
 import CreateListModal from "./CreateListModal";
 import TasksList from "./TasksList";
 import TasksCategoryList from "./TasksCategoryList";
+import LoginComponent from "./LoginComponent";
 
 function App() {
+  const [isUserSignedIn, setIsUserSignedIn] = useState(true);
+
   // State for the list of tasks
   const [tasks, setTasks] = useState(JSON.parse(localStorage.getItem("tasks")));
 
@@ -31,28 +34,34 @@ function App() {
   }
 
   return (
-    <div className="main-container">
-      {/* Conditional rendering of the TasksList component */}
-      {isTaskListOpen === true ? (
-        <TasksList
-          tasksList={tasks}
-          setTasks={setTasks}
-          setIsTaskListOpen={setIsTaskListOpen}
-        />
+    <>
+      {!isUserSignedIn ? (
+        <LoginComponent setIsUserSignedIn={setIsUserSignedIn} />
       ) : (
-        // Fragment with the CreateListModal and TasksCategoryList components
-        <>
-          <CreateListModal createTasksList={createTasksList} />
-          <div className="spacer"></div>
-          <TasksCategoryList
-            tasks={tasks}
-            setTasks={setTasks}
-            isTaskListOpen={isTaskListOpen}
-            setIsTaskListOpen={setIsTaskListOpen}
-          />
-        </>
+        <div className="main-container">
+          {/* Conditional rendering of the TasksList component */}
+          {isTaskListOpen === true ? (
+            <TasksList
+              tasksList={tasks}
+              setTasks={setTasks}
+              setIsTaskListOpen={setIsTaskListOpen}
+            />
+          ) : (
+            // Fragment with the CreateListModal and TasksCategoryList components
+            <>
+              <CreateListModal createTasksList={createTasksList} />
+              <div className="spacer"></div>
+              <TasksCategoryList
+                tasks={tasks}
+                setTasks={setTasks}
+                isTaskListOpen={isTaskListOpen}
+                setIsTaskListOpen={setIsTaskListOpen}
+              />
+            </>
+          )}
+        </div>
       )}
-    </div>
+    </>
   );
 }
 

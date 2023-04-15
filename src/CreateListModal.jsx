@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Input from "./Input";
 
 function Modal(props) {
   // Initialize isOpen and inputText states using useState hook
@@ -12,14 +11,21 @@ function Modal(props) {
   };
 
   // Function to handle form submission from Input component
-  function handleSubmit(text) {
-    if (text) {
+  function handleSubmit(e) {
+    e.preventDefault();
+    if (inputText) {
       // Call the createTasksList function from props with the input text as argument
-      props.createTasksList(text);
+      props.createTasksList(inputText.trim());
       // Clear the input text and toggle the modal
       setInputText("");
       toggleModal();
+    } else {
+      alert("Task List should have a name");
     }
+  }
+
+  function handleChange(event) {
+    setInputText(event.target.value);
   }
 
   return (
@@ -27,27 +33,25 @@ function Modal(props) {
       {/* Button to toggle the modal isoOpen state and add a new list */}
       <button onClick={toggleModal} className="addlist-btn">
         Add New List
-      </button>
+      </button>{" "}
       {/* Render the modal if isOpen state is true */}
       {isOpen && (
         <div className="modal">
           <div className="modal-content">
             <h2>Name the List</h2>
             {/* Render the Input component */}
-            <Input
-              placeholder="Add new List"
-              handleText={handleSubmit}
-              setInputText={setInputText}
-              inputText={inputText}
-              autoFocus={true}
-            />
-            {/* Button to submit the form */}
-            <button
-              className="close-modal-btn"
-              onClick={() => handleSubmit(inputText)}
-            >
-              Add New List
-            </button>
+            <form action="submit" onSubmit={handleSubmit}>
+              <input
+                type="text"
+                value={inputText}
+                placeholder="Add New List"
+                onChange={handleChange}
+                autoFocus
+              />
+              <button className="add-btn" onClick={handleSubmit}>
+                Add New List
+              </button>
+            </form>
           </div>
         </div>
       )}

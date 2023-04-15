@@ -10,7 +10,8 @@ body {
 :root {
   --trash-color: #ff3f5b;
 }
-.main-container {
+.main-container,
+.login-component {
   position: relative;
   margin: 30px auto;
   background-color: white;
@@ -29,6 +30,15 @@ body {
 .heading-text {
   padding: 0 50px;
 }*/
+.login-component {
+  display: flex;
+  flex-direction: column;
+}
+.login-component > * {
+  width: 70%;
+  margin: 5px auto;
+  padding: 10px;
+}
 .spacer {
   height: 1px;
   background-color: #c5c5c5;
@@ -55,11 +65,12 @@ body {
   color: #bfbfbf;
 }
 form {
-  display: flex;
-  justify-content: center;
+  width: 70%;
+  margin: auto;
 }
 input[type="text"] {
   font-family: "Lexend";
+  width: 100%;
   height: 40px;
   outline: none;
   font-size: 18px;
@@ -89,11 +100,14 @@ input[type="text"]:focus {
   background: linear-gradient(135deg, #1798fb 0%, #2d5cfe 100%);
 }
 .add-btn {
-  width: 70%;
+  width: 100%;
   height: 40px;
   border-radius: 5px;
   margin-top: 10px;
   font-size: 1.2rem;
+}
+.form-btn {
+  cursor: pointer;
 }
 .close-modal-btn {
   width: 100%;
