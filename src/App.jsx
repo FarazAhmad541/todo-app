@@ -7,7 +7,7 @@ import TasksCategoryList from "./TasksCategoryList";
 import LoginComponent from "./LoginComponent";
 
 function App() {
-  const [isUserSignedIn, setIsUserSignedIn] = useState(true);
+  const [isUserSignedIn, setIsUserSignedIn] = useState(false);
 
   // State for the list of tasks
   const [tasks, setTasks] = useState(JSON.parse(localStorage.getItem("tasks")));
