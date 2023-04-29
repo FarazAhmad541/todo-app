@@ -4,23 +4,22 @@ import "./App.css";
 import CreateListModal from "./components/CreateListModal";
 import TasksList from "./components/TasksList";
 import TasksCategoryList from "./components/TasksCategoryList";
-import LoginComponent from "./components/LoginComponent";
+// import LoginComponent from "./components/LoginComponent";
+// import AccountMenu from "./components/AccountMenu.jsx";
 
 function App() {
-  const [isUserSignedIn, setIsUserSignedIn] = useState(false);
+  // const [isUserSignedIn, setIsUserSignedIn] = useState(false);
 
-  // State for the list of tasks
-  const [tasks, setTasks] = useState(JSON.parse(localStorage.getItem("tasks")));
+  const [tasks, setTasks] = useState(
+    JSON.parse(localStorage.getItem("tasks")) || []
+  );
 
-  // State for whether the task list is open or closed
   const [isTaskListOpen, setIsTaskListOpen] = useState(false);
 
-  // Effect hook to update local storage when tasks state changes
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
   }, [tasks]);
 
-  // Function to create a new tasks list
   function createTasksList(listname) {
     setTasks((prevTasks) => [
       ...prevTasks,
@@ -35,32 +34,26 @@ function App() {
 
   return (
     <>
-      {!isUserSignedIn ? (
-        <LoginComponent setIsUserSignedIn={setIsUserSignedIn} />
-      ) : (
-        <div className="main-container">
-          {/* Conditional rendering of the TasksList component */}
-          {isTaskListOpen === true ? (
-            <TasksList
-              tasksList={tasks}
+      <div className="main-container">
+        {isTaskListOpen === true ? (
+          <TasksList
+            tasksList={tasks}
+            setTasks={setTasks}
+            setIsTaskListOpen={setIsTaskListOpen}
+          />
+        ) : (
+          <>
+            <CreateListModal createTasksList={createTasksList} />
+            <div className="spacer"></div>
+            <TasksCategoryList
+              tasks={tasks}
               setTasks={setTasks}
+              isTaskListOpen={isTaskListOpen}
               setIsTaskListOpen={setIsTaskListOpen}
             />
-          ) : (
-            // Fragment with the CreateListModal and TasksCategoryList components
-            <>
-              <CreateListModal createTasksList={createTasksList} />
-              <div className="spacer"></div>
-              <TasksCategoryList
-                tasks={tasks}
-                setTasks={setTasks}
-                isTaskListOpen={isTaskListOpen}
-                setIsTaskListOpen={setIsTaskListOpen}
-              />
-            </>
-          )}
-        </div>
-      )}
+          </>
+        )}
+      </div>
     </>
   );
 }
