@@ -22,7 +22,6 @@ function App() {
 
   const [isTaskListOpen, setIsTaskListOpen] = useState(false);
 
-  console.log(user);
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
   }, [tasks]);
@@ -43,7 +42,12 @@ function App() {
     if (user) {
       return (
         <div className="navbar">
-          <h2>{user?.displayName || user?.email?.split("@")[0]}</h2>
+          <h2 style={{ margin: 0 }}>
+            {user?.displayName || user?.email?.split("@")[0]}
+          </h2>
+          <button onClick={signOut} className="logout-btn">
+            Logout
+          </button>
         </div>
       );
     }
@@ -52,10 +56,12 @@ function App() {
   return (
     <>
       <Navbar />
-      <button onClick={signOut}>Logout</button>
       <div className="main-container">
         {!user ? (
           <div>
+            {/* <h4 style={{ width: "70%", textAlign: "left" }}>
+              Sign In to yout existing account or create a new one
+            </h4> */}
             {isSignUpMode ? (
               <Signup setIsSignUpMode={setIsSignUpMode} />
             ) : (

@@ -13,7 +13,6 @@ export default function Signup(props) {
     confirmPassword: "",
   });
   const { setIsSignUpMode } = props;
-  const [passwordError, setPasswordError] = useState("");
 
   const handleInputs = (event) => {
     let inputs = { [event.target.name]: event.target.value };
@@ -24,21 +23,11 @@ export default function Signup(props) {
   async function handleSubmit(event) {
     event.preventDefault();
     if (error) setPasswordError("");
-    if (data.password !== data.confirmPassword) {
+    if (data.email && data.password !== data.confirmPassword) {
       setPasswordError("Passwords Donot Match");
       return;
     } else {
       await createUserWithEmailAndPassword(data.email, data.password);
-    }
-  }
-
-  function DisplayUserName() {
-    if (user) {
-      return (
-        <div>
-          <p>Signed Up User: {user.user.email}</p>
-        </div>
-      );
     }
   }
 
@@ -55,7 +44,7 @@ export default function Signup(props) {
       />
     </div>
   ) : (
-    <div className="login-modal">
+    <div className="signup-modal">
       <input
         placeholder="Email"
         name="email"
@@ -77,8 +66,10 @@ export default function Signup(props) {
         className="input-fields"
         onChange={(event) => handleInputs(event)}
       />
-      <button onClick={handleSubmit}>Sign Up</button>
-      <h3>
+      <button onClick={handleSubmit} className="login-btn">
+        Sign Up
+      </button>
+      <h4>
         Already have a account{" "}
         <span
           onClick={() => setIsSignUpMode(false)}
@@ -86,9 +77,7 @@ export default function Signup(props) {
         >
           Sign In
         </span>
-      </h3>
-      <DisplayUserName />
-      {passwordError}
+      </h4>
     </div>
   );
 }

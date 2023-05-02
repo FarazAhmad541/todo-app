@@ -18,8 +18,6 @@ export default function Signin(props) {
     setData({ ...data, ...inputs });
   };
 
-  const [userError, setUserError] = useState("");
-
   async function handleSubmit(event) {
     event.preventDefault();
     if (data.email && data.password) {
@@ -54,7 +52,7 @@ export default function Signin(props) {
       />
     </div>
   ) : (
-    <div className="login-modal">
+    <div className="signin-modal">
       <input
         placeholder="Email"
         name="email"
@@ -69,8 +67,10 @@ export default function Signin(props) {
         className="input-fields"
         onChange={(event) => handleInputs(event)}
       />
-      <button onClick={handleSubmit}>Sign In</button>
-      <h3>
+      <button onClick={handleSubmit} className="login-btn">
+        Sign In
+      </button>
+      <h4>
         Don't have an account?{" "}
         <span
           onClick={() => setIsSignUpMode(true)}
@@ -78,9 +78,7 @@ export default function Signin(props) {
         >
           Sign Up
         </span>
-      </h3>
-      <DisplayUserName />
-      {userError}
+      </h4>
     </div>
   );
 }
