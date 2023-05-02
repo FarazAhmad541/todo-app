@@ -22,6 +22,7 @@ function App() {
 
   const [isTaskListOpen, setIsTaskListOpen] = useState(false);
 
+  console.log(user);
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
   }, [tasks]);

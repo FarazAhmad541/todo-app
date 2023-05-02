@@ -20,12 +20,13 @@ export default function Signin(props) {
 
   const [userError, setUserError] = useState("");
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
     if (data.email && data.password) {
-      signInWithEmailAndPassword(data.email, data.password);
+      await signInWithEmailAndPassword(data.email, data.password);
     }
     if (error) {
+      console.log(error);
       setUserError(error);
     }
   }
